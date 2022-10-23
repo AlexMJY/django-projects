@@ -1,0 +1,3 @@
+[submodule "djangogram"]
+	path = djangogram
+	url = https://github.com/EdwardYoungMoon/djangogram.git
