@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 class Video(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -10,6 +11,11 @@ class Video(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     view_count = models.PositiveIntegerField(default=0)
+    
+    def get_absolute_url(self):
+        # return reverse("cattube:video_detail", args=[self.pk]) 
+        return reverse("cattube:video_list") 
+    
 
 class Comment(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)

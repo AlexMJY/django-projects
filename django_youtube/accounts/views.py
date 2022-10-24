@@ -14,8 +14,8 @@ from django.views.generic import CreateView
 # )
 
 class signup(CreateView):
-    from_class = UserCreationForm
-    success_url = settings.LOGIN_URL
+    form_clsss = UserCreationForm,
+    success_url = settings.LOGIN_URL,
     template_name = "form.html"
     
 login = LoginView.as_view(

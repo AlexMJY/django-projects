@@ -1,0 +1,43 @@
+{% load bootstrap4 %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cattube</title>
+
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    {% bootstrap_css %}
+    {% bootstrap_jquery %}
+    {% bootstrap_javascript %}
+
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="{% url 'root' %}" class="navbar-brand">
+                <i class="fa fa-youtube-play text-danger mr-1"></i>
+                Cattube
+            </a>
+            <form action="{% url 'cattube:video_list' %}" method="get" class="form-inline">
+                <input type="text" class="form-control mr-2" name="q" value="{{ request.GET.q }}" />
+                <input type="submit" value="검색" class="btn btn-danger" />
+            </form>
+            <div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'cattube:video_new' %}" class="btn btn-danger">업로드</a>
+                    <a href="{% url 'accounts:logout' %}" class="btn btn-outline-info">로그아웃</a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}" class="btn btn-outline-danger">로그인</a>
+                    <a href="{% url 'accounts:signup' %}" class="btn btn-danger">회원가입</a>
+                {% endif %}
+            </div> 
+        </nav>
+        {% block content %}
+        {% endblock %}
+
+        &copy; 2020 MJY
+    </div>
+
+</body>
+</html>
+

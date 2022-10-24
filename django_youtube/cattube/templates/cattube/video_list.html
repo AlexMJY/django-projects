@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+{% for video in video_list %}
+    <a href="{% url 'cattube:video_detail' video.pk %}">
+        {{ video.title }}
+    </a>
+{% endfor %}
+
+{% bootstrap_pagination page_obj %}
+
+<hr/>
+
+<a href="{% url 'cattube:video_new' %}">업로드</a>
+{% endblock %}
