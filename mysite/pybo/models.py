@@ -5,6 +5,9 @@ class Question(models.Model):
     content = models.TextField()
     create_dt = models.DateTimeField()
     
+    def __str__(self): # admin 사이트에 subject 보이기
+        return self.subject
+    
     
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
