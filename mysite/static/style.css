@@ -1,0 +1,9 @@
+/* 답변 등록시 사용하는 텍스트 창의 넓이를 100% */
+textarea {
+    width: 100%; 
+}
+
+/* 답변 등록 버튼 상단에 10픽셀의 마진 설정 */
+input[type=submit] {
+    margin-top: 10px;
+}
