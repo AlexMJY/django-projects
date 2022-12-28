@@ -3,10 +3,11 @@
  <h5 class="my-3 border-bottom pb-2">질문등록</h5>
  <form method="post">
     {% csrf_token %}
-    {% comment %} {{ form.as_p }}의 form은 question_create 함수에서 전달한 QuestionForm의 객체이다. 
+    
+    <!-- {{ form.as_p }}의 form은 question_create 함수에서 전달한 QuestionForm의 객체이다. 
     폼에 정의한 subject, content 속성에 해당하는 HTML 코드를 자동으로 생성한다. 
     그러나 HTML 코드를 자동으로 생성하기 때문에 부트스트랩을 적용할 수가 없다.
-    {{ form.as_p }}  {% endcomment %}
+    {{ form.as_p }} -->
 
     <!-- 오류표시 Start -->
     {% if form.errors %}

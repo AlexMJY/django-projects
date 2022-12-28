@@ -11,8 +11,15 @@
 </head>
 
 <body>
-    {% comment %} base.html을 상속한 템플릿에서 개별적으로 구현해야 하는 영역 {% endcomment %}
+    <!-- 장고에는 템플릿의 특정 위치에 다른 템플릿을 삽입할수 있는 include 태그가 있다. 
+        include 태그는 보통 템플릿에서 특정 영역이 반복적으로 사용될 경우 중복을 없애기 위해 사용한다. -->
+    {% include "navbar.html" %}
+
+    <!-- base.html을 상속한 템플릿에서 개별적으로 구현해야 하는 영역 -->
     {% block content %} 
     {% endblock %}
+
+    <!-- bootstrap js -->
+    <script src={% static 'bootstrap.min.js' %}></script>
 </body>
 </html>
