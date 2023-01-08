@@ -7,7 +7,9 @@ class Question(models.Model):
     subject = models.CharField(max_length=200)
     content = models.TextField()
     create_dt = models.DateTimeField()
+    modify_dt = models.DateTimeField(null = True, blank = True) # blank=True는 form.isvalid()로 데이터 검증 시 입력 값이 없어도 된다.
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     
     def __str__(self): # admin 사이트에 subject 보이기
         return self.subject
@@ -17,4 +19,5 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     content = models.TextField()
     create_dt = models.DateTimeField()
+    modify_dt = models.DateTimeField(null = True, blank = True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
