@@ -1,4 +1,5 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, url_for
+from werkzeug.utils import redirect
 
 bp = Blueprint('main', __name__, url_prefix='/')
 # __name__은 모듈명인 main.views가 인수로 전달된다. 첫 번째 파라미터인 main은 블루프린트의 별칭(Alias)이다.
@@ -10,4 +11,4 @@ def hello_pybo():
 
 @bp.route('/')
 def index():
-    return 'Pybo index'
+    return redirect(url_for('question._list'))
