@@ -2,6 +2,8 @@
     // 빈 리스트로 초깃값을 주지 않으면 fetch 함수는 비동기 방식으로 실행되어,
     // 요청하는 중에 each문이 실행되고 question_list에 값이 없어 오류가 발생한다.
     import fastapi from '../lib/api';
+    import { link } from 'svelte-spa-router'
+
     let question_list = []
   
     // get_quesiton_list()는 질문 목록 API를 호출하는 함수다. 
@@ -24,6 +26,6 @@
   
   <ul>
     {#each question_list as question}
-      <li>{question.subject}</li>
+      <li><a use:link href="/detail/{question.id}">{question.subject}</a></li>
     {/each}
   </ul>
