@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from database import get_db
+from domain.question import question_schema
 from models import Question
 
 # 라우팅이란 FastAPI가 요청받은 URL을 해석하여 그에 맞는 함수를 실행하여 그 결과를 리턴하는 행위를 말한다.
@@ -12,7 +13,7 @@ router = APIRouter(
 )
 
 # get_db함수의 finally에 작성한 db.close() 함수가 자동으로 실행된다.
-@router.get("/list")
+@router.get("/list", response_model=list[question_schema.Quesiton])
 def question_list(db: Session = Depends(get_db)):
     _question_list = db.query(Question).order_by(Question.create_date.desc()).all()
     return _question_list
