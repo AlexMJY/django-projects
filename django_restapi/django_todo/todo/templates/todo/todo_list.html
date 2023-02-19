@@ -9,19 +9,18 @@
     <div class="container">
             <h1>ToDo List Application</h1>
             <p>
-                <a href=""><i class="bi-plus"></i>Add Todo</a>
-                <a href="" class="btn btn-primary" style="float:right">Complete Todo List</a>
+                <a href="{% url 'todo_post' %}"><i class="bi-plus"></i>Add Todo</a>
+                <a href="{% url 'done_list' %}" class="btn btn-primary" style="float:right">Complete Todo List</a>
             </p>
             <ul class="list-group">
                 {% for todo in todos %}
                 <li class="list-group-item">
-                    <a href="">{{ todo.title }}</a>
+                    <a href="{% url 'todo_detail' todo.id %}">{{ todo.title }}</a>
                     {% if todo.important %}
                         <span class="badge badge-danger">!</span>
                     {% endif %}
                     <div style="float:right">
                         <a href="" class="btn btn-danger">Complete</a>
-                        <a href="" class="btn btn-outline-primary">Modifying</a>
                     </div>
                 </li>
                 {% endfor %}
