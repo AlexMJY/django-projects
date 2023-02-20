@@ -13,7 +13,7 @@
         <ul class="list-group">
             {% for done in dones %}
             <li>
-                <a href="{% url 'todo_list' pk=done.pk %}">{{ done.title }}</a>
+                <a href="{% url 'todo_detail' pk=done.pk %}">{{ done.title }}</a>
                 {% if done.important %}
                     <span class="badge badge-dange">!</span>
                 {% endif %}
