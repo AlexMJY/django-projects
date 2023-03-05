@@ -78,4 +78,18 @@ class BookAPIMixins(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.
     def delete(self, request, *args, **kwargs):  
         return self.destroy(request, *args, **kwargs)
     
+class BooksAPIGenerics(generics.ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    
+class BookAPIGenerics(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    lookup_field = 'bid'
+    
+    
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    
         
