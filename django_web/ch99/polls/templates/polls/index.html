@@ -1,3 +1,7 @@
+{% extends 'base_polls.html' %}
+
+{% block content %}
+<h2>Polls Question List</h2>
 {% if latest_question_list %}  <!--latest_question_list는 index() 뷰 함수에서 넘겨주는 파라미터-->
     <ul>
         {% for question in latest_question_list %} <!--latest_question_list를 순회하면서 순서 없는 리스트 형식으로 화면에 보여준다-->
@@ -7,3 +11,7 @@
 {% else %} <!--latest_question_list 객체에 내용이 없다면 아래의 문장을 화면에 띄운다--> 
     <p>No polls are available</p>
 {% endif %}
+
+{% endblock %}
+
+

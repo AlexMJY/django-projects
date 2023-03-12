@@ -1,3 +1,7 @@
+{% extends 'base_polls.html' %}
+
+{% block content %}
+
 <h1>{{ question.qeustion_text }}</h1>
 <!-- |pluralize는 복수 접미사(s)를 붙여준다 / 뷰 함수에서는 reverse()를 사용하고, 템플릿에서는 url태그를 사용한다 -->
 <ul>
@@ -7,4 +11,8 @@
 </ul>
 
 <a href="{% url 'polls:detail' question.id %}">Vote Again?</a>
+
+{% endblock %}
+
+
 

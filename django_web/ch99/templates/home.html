@@ -3,10 +3,14 @@
 {% block content %}
     <h2>Alex Django Application</h2>
     <ul>
-        {% for appname in app_list %}
+        {% comment %} {% for appname in app_list %}
         {% with appname|add:":index" as urlvar %}
             <li><a href="{% url urlvar %}">{{ appname }}</a></li>
         {% endwith %}
+        {% endfor %} {% endcomment %}
+
+        {% for key, value in verbose_dict.items %}
+            <li><a href="{% url key|add:':index' %}">{{ value }}</a></li>
         {% endfor %}
     </ul>
 {% endblock content %}
