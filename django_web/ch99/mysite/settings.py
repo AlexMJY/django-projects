@@ -123,3 +123,30 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# django의 디폴트 설정을 유지하면서 로깅 설정
+LOGGING = {
+    'version' : 1,
+    'disable_existing_loggers' : False,
+    'formatters' : {
+        'verbose' : {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+    },
+    'hanlers' : {
+        'file' : {
+            'level' : 'DEBUG',
+            'class' : 'logging.FileHandler',
+            'filename' : BASE_DIR / 'logs' / 'mysie.log',
+            'formatter' : 'verbose'
+            },
+    'loggers' : {
+        'polls' : {
+            'handlers' : ['file'],
+            'level' : 'DEBUG',
+        },
+    },
+},
+}

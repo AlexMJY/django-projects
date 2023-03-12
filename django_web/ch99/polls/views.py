@@ -5,6 +5,11 @@ from django.views import generic
 
 from .models import Question, Choice
 
+import logging
+logger = logging.getLogger(__name__)
+# polls.views 로거 객체를 취득한다. __name__은 모듈 경로를 담고 있는 파이썬 내장 변수다. 즉 views.py 파일의 모듈 경로는 polls.views이고 
+# 사용하고자 하는 로거 객체의 이름이다. 이 로거에서 생산한 로그 레코드는 상위 polls 로거에게 전파되고 polls 로거에서 메시지를 기록한다.
+
 
 # def index(request):
 #     latest_question_list = Question.objects.all().order_by('-pub_date')[:5]
@@ -31,6 +36,9 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 def vote(request, question_id):
+    # logger.debug(f"vote().question_id: {question.id}")
+    # 로거 객체의 degug() 메소드를 호출하여 로거에게 DEBUG 수준으로 로그 레코드를 생성하도록 요청한다.
+    # 로거는 settings.py의 로깅 설정에 따라 file 핸들러를 사용하여 ch99/logs/mysite.log 파일에 로그 메시지를 기록한다.
     question = get_object_or_404(Question, pk=question_id)
     try:
         seleted_choice = question.choice_set.get(pk=request.POST['choice'])
