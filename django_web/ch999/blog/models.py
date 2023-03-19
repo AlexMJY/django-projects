@@ -19,7 +19,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self): # 이 메소드가 정의된 객체를 지칭하는 url을 반환
-        return reverse('blog:post_detail', args=(self.slug),)
+        return reverse('blog:post_detail', args=(self.slug,))
     
     def get_previous(self): # get_previous_by_modify_dt는 장고의 내장 함수
         return self.get_previous_by_modify_dt()
