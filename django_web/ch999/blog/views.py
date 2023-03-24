@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic import ArchiveIndexView, YearArchiveView, MonthArchiveView
 from django.views.generic import DayArchiveView, TodayArchiveView
 
@@ -44,3 +44,21 @@ class PostTAV(TodayArchiveView):
     model = Post
     date_field = 'modify_dt'
 
+
+class TagCloudTV(TemplateView):
+    template_name = 'taggit/taggit_cloud.html'
+
+
+class TaggedObjectLV(ListView):
+    template_name = 'taggit/taggit_post_list.html'
+    model = Post
+    
+    def get_queryset(self):
+        return Post.objects.filter(tags__name=self.kwargs.get('tag'))
+    
+    # template에 넘겨줄 컨텍스트 변수를 추가
+    def get_context_data(self, **kwargs):
+        # super()~~ 를 호출하여 상위 클래스의 변경 전 컨텍스트 변수를 구한다.
+        context = super().get_context_data(**kwargs)
+        context['tagname'] = self.kwargs['tag']
+        return context
