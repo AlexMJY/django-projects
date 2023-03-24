@@ -1,5 +1,8 @@
-<h1>Post Archives for {{ day|date:"N d, Y" }}</h1>
+{% extends 'base.html' %}
 
+{% block title %}<h1>Post Archives for {{ day|date:"N d, Y" }}</h1>{% endblock title %}
+
+{% block content %}
 <div>
     <ul>
         {% for post in object_list %}
@@ -9,3 +12,5 @@
         {% endfor %}
     </ul>
 </div>
+{% endblock content %}
+
