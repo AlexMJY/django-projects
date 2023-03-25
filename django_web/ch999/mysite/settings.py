@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-b1tuwg(mb9de0z^bc$(1yp65_e$5mm39z&@88g*2pdm2l1rz$3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1'] # modified
+ALLOWED_HOSTS = ['192.168.56.101', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -129,4 +129,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # modified
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TAGGIT_CASE_INSENSITIVE = True
-TAGGIT_LIMIT = 50 
+TAGGIT_LIMIT = 50
+
+DISQUS_SHORTNAME = "django-web-homepage"
+DISQUS_MY_DOMAIN =  "http://192.168.56.101:8000"

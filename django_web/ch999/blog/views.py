@@ -4,6 +4,8 @@ from django.views.generic import DayArchiveView, TodayArchiveView
 
 from blog.models import Post
 
+from django.conf import settings
+
 
 #--- ListView
 class PostLV(ListView):
@@ -16,6 +18,14 @@ class PostLV(ListView):
 #--- DetailView
 class PostDV(DetailView):
     model = Post
+    
+    def get_context_data(self, **kwargs): # 컨텍스트 변수를 추가하기 위해 메소드를 오버라이딩
+        context = super().get_context_data(**kwargs) # super() 메소드로 기존의 컨텍스트 변수들을 구하고 context에 대입
+        context['disqus_short'] = f"{settings.DISQUS_SHORTNAME}" # f-string을 이용하여 disqus_short 변수에 항목값 대입
+        context['disqus_id'] = f"post-{self.object.id}-{self.object.slug}"
+        context['disqus_url'] = f"{settings.DISQUS_MY_DOMAIN}{self.object.get_absolute_url()}"
+        context['disqus_title'] = f"{self.object.slug}"
+        return context
 
 
 #--- ArchiveView
