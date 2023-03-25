@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from mysite.views import HomeView
 
+from django.conf.urls.static import static # 정적 파일 처리
+from django.conf import settings # settings.py 모듈에서 정의한 항목들을 담고 있는 객체를 가리키는 reference
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('', HomeView.as_view(), name='home'),
     path('bookmark/', include('bookmark.urls')),
     path('blog/', include('blog.urls')),
-]
+    path('photo/', include('photo.urls')),
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) # 기존 url 패턴에 static() 함수가 반환하는 url 패턴을 추가한다.

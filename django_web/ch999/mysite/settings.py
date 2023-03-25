@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['192.168.56.101', 'localhost', '127.0.0.1']
 INSTALLED_APPS = [
     'bookmark',
     'blog',
+    'photo',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,6 +124,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] # modified
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'medis')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -133,3 +137,4 @@ TAGGIT_LIMIT = 50
 
 DISQUS_SHORTNAME = "django-web-homepage"
 DISQUS_MY_DOMAIN =  "http://192.168.56.101:8000"
+
