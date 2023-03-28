@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mysite.views import HomeView
+from mysite.views import UserCreateView, UserCreateDoneTV # UserCreateDoneTV는 계정 생성이 완료된 후에 보여줄 화면 처리
 
 from django.conf.urls.static import static # 정적 파일 처리
 from django.conf import settings # settings.py 모듈에서 정의한 항목들을 담고 있는 객체를 가리키는 reference
@@ -23,6 +24,9 @@ from django.conf import settings # settings.py 모듈에서 정의한 항목들�
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')), # django의 기본 인증 URLconf를 가져와서 사용. 
+    path('accounts/register/', UserCreateView.as_view(), name='register'),
+    path('accounts/register/done/', UserCreateDoneTV.as_view(), name='register_done'),
     
     path('', HomeView.as_view(), name='home'),
     path('bookmark/', include('bookmark.urls')),
