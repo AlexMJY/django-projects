@@ -21,6 +21,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
@@ -33,6 +34,38 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'photo:index' %}">Photo</a>
           </li>
+
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Add
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'bookmark:add' %}">Bookmark</a></li>
+              <li><a class="dropdown-item" href="{% url 'blog:add' %}">Post</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="">Album</a></li>
+              <li><a class="dropdown-item" href="">Photo</a></li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Change
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'bookmark:change' %}">Bookmark</a></li>
+              <li><a class="dropdown-item" href="{% url 'blog:change' %}">Post</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="">Album</a></li>
+              <li><a class="dropdown-item" href="">Photo</a></li>
+            </ul>
+          </li>
+
+
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Util
@@ -45,6 +78,9 @@
             </ul>
           </li>
         </ul>
+
+
+
         <form class="d-flex" role="search">
         {% csrf_token %}
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

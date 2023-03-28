@@ -11,6 +11,11 @@ from blog.forms import PostSearchForm
 from django.db.models import Q
 from django.shortcuts import render
 
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin # @login_required() 데코레이터 기능을 적용할 때 사용. 사용자가 로그인 된 경우 정상 처리하게 한다. 로그인이 안된 사용자는 로그인 페이지로 리다이렉트
+from django.urls import reverse_lazy # urlconf 패턴화 == 하드코딩 하지 않아도 됨
+from mysite.views import OwnerOnlyMixin
+
 #--- ListView
 class PostLV(ListView):
     model = Post
@@ -92,3 +97,32 @@ class SearchFormView(FormView):
         context['object_list'] = post_list
         
         return render(self.request, self.template_name, context)
+    
+    
+    
+    
+    
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'slug', 'description', 'content', 'tags']
+    initial = {'slug': 'auto-filling-do-not-input'} # 폼의 slug 입력에 대한 초기값 설정. 뷰에서 레코드 생성 폼을 보여줄 때 slug 필드는 입력하지 말라는 의미
+    success_url = reverse_lazy('blog:index')
+    
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+    
+class PostChangeLV(LoginRequiredMixin, ListView):
+    template_name = 'blog/post_change_list.html'
+    
+    def get_queryset(self):
+        return Post.objects.filter(owner=self.request.user)
+    
+class PostUpdateView(OwnerOnlyMixin, UpdateView):
+    model = Post
+    fields = ['title', 'slug', 'description', 'content', 'tags']
+    success_url = reverse_lazy('blog:index')
+    
+class PostDeleteView(OwnerOnlyMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy('blog:index')
